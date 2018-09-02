@@ -144,19 +144,19 @@ var poorCities = {
 };
 
 function inwestuj() {
-    
-   
-    if (document.querySelector('.PoorCity:checked').value == 1)
-	{    
-		var min_x = 10000000;
-	} else {
-		var min_x = getMinFromClass();
-	}
+    var min_x = getMinFromClass();
+    var element = document.getElementById("PoorCityButton");
+    if (element){
+	if (document.querySelector('.PoorCity:checked').value == 1)
+           {
+            min_x = 10000000;
+           }
+    }
 
     var factor = 0;
 
     var y = document.querySelector('.entrepneur:checked').value;
-
+      
     if (document.querySelector('.BiR:checked').value == true){
        document.getElementById("inwestuj").innerHTML = "Prawdopodobnie spełniasz kryteria ilościowe";
        min_x -= min_x * 95/100;
@@ -174,6 +174,7 @@ function inwestuj() {
            factor = 20;
         }
     }
+
     var do_inwestycji = document.getElementById("doInwestycji").value;
     
     if (do_inwestycji < min_x){
@@ -192,7 +193,8 @@ function inwestuj() {
        factor += getIncentiveFromWoj();
     }
     do_inwestycji = factor * do_inwestycji/100;
-    document.getElementById("dostaniesz").innerHTML = "<table><tr><td><b>Dostaniesz</b> </td><td>" + do_inwestycji + "</td></tr><tr>" + "<td><b>Intensywność:</b></td> <td> " + factor + "</td></tr>";
+    document.getElementById("dostaniesz").innerHTML = "<table><tr><td><b>Koszty objęte pomocą publiczną</b> </td><td>" + do_inwestycji + "</td></tr><tr>" + "<td><b>Intensywność:</b></td> <td> " + factor + "</td></tr>";
+     
 }
 
 function getParameterByName() {
@@ -219,17 +221,18 @@ function getParameterByName() {
 		                    <input type="checkbox" class="BiR"" value=2 name="BiR[1][]"/> Nie <br><br></td></tr>\
 							<tr><td><i> Czy zamierzasz przeprowadzić inwestycję w podanym mieście lub gminie graniczącej z takim miastem? </i></td><td><b>\
 		                    Miasto tracące funkcje społeczno-gospodarcze:</b> '+ poorCities[powiat] +
-							'<br><br><input type="checkbox" class="PoorCity"" value=1 name="PoorCity[1][]"/> Tak <br><br> \
-		                    <input type="checkbox" class="PoorCity"" value=2 name="PoorCity[1][]"/> Nie <br></td></tr>\
+							' <div id="PoorCityButton"><br><br><input type="checkbox" class="PoorCity"" value=1 name="PoorCity[1][]"/> Tak <br><br> \
+		                   <input type="checkbox" class="PoorCity"" value=2 name="PoorCity[1][]"/> Nie <br></div></td></tr>\
 							</table>';
 	} else
 	{
-		document.getElementById("tablica").innerHTML = '<tr><th>Pytanie</th><th>Twoja odpowiedź</th></tr> \
+		
+                document.getElementById("tablica").innerHTML = '<tr><th>Pytanie</th><th>Twoja odpowiedź</th></tr> \
 							<tr><td><i> Jakim przedsiębiorcą jesteś? </i></td><td> \
-								<input type="checkbox" class="entrepneur" value=1 name="entrepneur[1][]"/> Duży przedsiębiorca<br>\
-								<input type="checkbox" class="entrepneur" value=2 name="entrepneur[1][]"/> Średni przedsiębiorca<br>\
-								<input type="checkbox" class="entrepneur" value=3 name="entrepneur[1][]"/> Mały przedsiębiorca<br> \
-								<input type="checkbox" class="entrepneur" value=4 name="entrepneur[1][]"/> Mikroprzedsiębiorca<br><br>\
+								<input type="checkbox" class="entrepneur" value=1 name="entrepneur[1][]"/> Dużym przedsiębiorcą<br>\
+								<input type="checkbox" class="entrepneur" value=2 name="entrepneur[1][]"/> Średnim przedsiębiorcą<br>\
+								<input type="checkbox" class="entrepneur" value=3 name="entrepneur[1][]"/> Małym przedsiębiorcą<br> \
+								<input type="checkbox" class="entrepneur" value=4 name="entrepneur[1][]"/> Mikroprzedsiębiorcą<br><br>\
 							</td></tr> \
 							<tr><td><i> Ile chcesz zainwestować? </i></td><td>\
 							    <input type="number" id="doInwestycji" value=""><br><br></td></tr> \
@@ -238,9 +241,7 @@ function getParameterByName() {
 		                    <input type="checkbox" class="BiR"" value=2 name="BiR[1][]"/> Nie <br><br></td></tr>\
 							</table>';
 	}
-	
-	
-	
+		
 }
 
 function close_window() {
@@ -266,6 +267,7 @@ function getIncentiveFromPowiatWarszawski() {
 }
 
 function getMinFromClass() {
+   
     var min_xs_dict = {'I': 100000000.0,
 			 'II': 80000000.0,
 			 'III': 60000000.0,

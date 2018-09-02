@@ -222,7 +222,7 @@ var onSingleClick = function(evt) {
             popupText += '<tr><td colspan="2"><strong>Klasa: </strong></td>' + '<td style="text-align:right">' + klasa + "</td></tr>";
             var woj = String(feature.get("unemployment_rate_class_with_woj_woj"));
             popupText += '<tr><td colspan="3">';
-            popupText += "<a href='kalkulator.html?powiat=" + powiat + "&klasa=" + klasa + "&woj=" + woj + "'target='_blank'>Licz pomoc publiczną</a></td></tr>";
+            popupText += "<a href='kalkulator.html?powiat=" + powiat + "&klasa=" + klasa + "&woj=" + woj + "'target='_blank'>Sprawdź, czy inwestycja spełnia kryteria ilościowe</a></td></tr>";
             popupText += '</table>';
         }
 
