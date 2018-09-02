@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="resources/ol3-layerswitcher.css">
         <link rel="stylesheet" href="resources/qgis2web.css">
         <link rel="stylesheet" href="styles/legenda.css">
+        <script src="styles/powiaty_style.js"></script>
 
         <style>
         html, body {
@@ -34,14 +35,14 @@
 
         
          <div id="alert">
-  		<left><strong>  <a href="http://www.aleteior.pl">ALETEIOR</a> | Mapa i kalkulator mają charakter roboczy. </strong> Wszelkie decyzje podejmowane przez użytkownika w oparciu o informacje zawarte na tej stronie podejmowane są na jego własne ryzyko. Nie udzielam żadnej gwarancji, wyrażonej lub domniemanej w odniesieniu do  dokładności, kompletności oraz aktualności informacji zamieszczonych na tej stronie. Wszelkie prawa zastrzeżone <a href="http://www.aleteior.pl/prawa-autorskie"> więcej </a> </left></div> 
+  		<left><strong>  <a href="http://www.aleteior.pl">ALETEIOR</a> | Mapa i kalkulator mają charakter roboczy. </strong> Wszelkie decyzje podejmowane przez użytkownika w oparciu o informacje zawarte na tej stronie podejmowane są na jego własne ryzyko. Nie udzielam żadnej gwarancji, wyrażonej lub domniemanej w odniesieniu do  dokładności, kompletności oraz aktualności informacji zamieszczonych na tej stronie. Wszelkie prawa zastrzeżone (<a href="http://www.aleteior.pl/prawa-autorskie">więcej</a>)<button id="except" onclick="hideAlert()" value="Submit"> Ok, rozumiem. Nie pokazuj tego więcej (Jeśli używasz wersji mobile zjedź na dół) </button> </left>  </div> 
     </div>
 
 <div id='my-legend'>
-           <div class='legend-title'>Warunki do inwestowania</div>
+           <div class='legend-title'>Warunki do inwestowania [stopa bezrobocia z dnia 30 czerwca 2017 r.]</div>
            <div class='legend-scale'>
              <ul class='legend-labels'>
-		    <li><span style='background:#d7191c;'></span>Bardziej restrykcyjnie</li>
+		    <li><span style='background:#d7191c;'></span>Bardziej restrykcyjne</li>
 		    <li><span style='background:#ec6e43;'></span></li>
 		    <li><span style='background:#fdb96e;'></span></li>
 		    <li><span style='background:#fee7a4;'></span></li>
@@ -51,11 +52,6 @@
             </ul>
 	   </div>
 	 </div>
-
-
-
-
-    
         <div id="map">
             <div id="popup" class="ol-popup">
                 <a href="#" id="popup-closer" class="ol-popup-closer"></a>
@@ -74,7 +70,6 @@
         <script src="layers/layers.js" type="text/javascript"></script> 
         <script src="resources/qgis2web.js"></script>
         <script src="resources/Autolinker.min.js"></script>
-
     </body>
 
 </html>      

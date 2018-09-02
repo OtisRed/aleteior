@@ -72,4 +72,9 @@ var style_powiaty = function(feature, resolution){
     var allStyles = [styleCache_powiaty[key]];
     allStyles.push.apply(allStyles, style);
     return allStyles;
-};
+}
+
+function hideAlert() {
+     document.getElementById('alert').style.display = "none";    
+     document.getElementById('alert').style.visibility = "hidden";
+}

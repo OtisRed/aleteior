@@ -221,8 +221,9 @@ var onSingleClick = function(evt) {
             var klasa = String(feature.get("unemployment_rate_class_with_woj_class"));
             popupText += '<tr><td colspan="2"><strong>Klasa: </strong></td>' + '<td style="text-align:right">' + klasa + "</td></tr>";
             var woj = String(feature.get("unemployment_rate_class_with_woj_woj"));
+            popupText += '<tr><td colspan="3">';
+            popupText += "<a href='kalkulator.html?powiat=" + powiat + "&klasa=" + klasa + "&woj=" + woj + "'target='_blank'>Licz pomoc publiczną</a></td></tr>";
             popupText += '</table>';
-            popupText += "<a href='kalkulator.html?powiat=" + powiat + "&klasa=" + klasa + "&woj=" + woj + "' target='_blank'> Licz pomoc publiczną </a>";
         }
 
     });
@@ -256,3 +257,5 @@ var firstLayerAttribution = attributionList.getElementsByTagName('li')[0];
 var qgis2webAttribution = document.createElement('li');
 qgis2webAttribution.innerHTML = '<a href="https://github.com/tomchadwin/qgis2web">qgis2web</a>';
 attributionList.insertBefore(qgis2webAttribution, firstLayerAttribution);
+
+
