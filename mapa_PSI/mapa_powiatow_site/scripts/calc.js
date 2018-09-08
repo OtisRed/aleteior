@@ -163,16 +163,23 @@ function inwestuj() {
     } else {
         if (y == 2){
            min_x -= min_x * 80/100;
-           factor = 10;
         }
         else if (y == 3){
            min_x -= min_x * 95/100;
-           factor = 20;
         }
         else if (y == 4){
            min_x -= min_x * 98/100;
-           factor = 20;
         }
+    }
+
+    if (y == 2){
+           factor = 10;
+    }
+    else if (y == 3){
+        factor = 20;
+        }
+    else if (y == 4){
+        factor = 20;
     }
 
     var do_inwestycji = document.getElementById("doInwestycji").value;
