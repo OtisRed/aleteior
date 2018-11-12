@@ -9,31 +9,27 @@ class TaxDataNormalizer():
         self.words_list_greater_score = words_list_greater_score
         self.label_one = label_one
         self.label_two = label_two
+        self.new_label = "zmiana \"charakterystyczności\" danego słowa [w %]"
         self.normalized_data = self.normalize()
 
     def normalize(self):
-        normalized_data_for_greater_score = \
-            self.data[self.data.index.isin(self.words_list_greater_score)]
+        is_data_in_greater_score = \
+            self.data.index.isin(self.words_list_greater_score)
+        greater_score_normalized = self.data[is_data_in_greater_score]
 
-        normalized_data_for_greater_score[self.label_one] = \
-            (normalized_data_for_greater_score[self.label_one]
-                (self.data[self.data[self.label_one] != 0.0]
-                    [self.label_one].count()))
-        normalized_data_for_greater_score[self.label_two] = \
-            (
-                 normalized_data_for_greater_score[self.label_two] /
-                 (
-                     self.data[
-                        self.data[self.label_two] != 0.0
-                     ][self.label_two].count()
-                     ][self.label_two].count()
-                 )
-            )
+        self._normalize_label(self.label_one, greater_score_normalized)
+        self._normalize_label(self.label_two, greater_score_normalized)
 
-        normalized_data_for_greater_score["zmiana \"charakterystyczności\" "
-                                          "danego słowa [w %]"]\
-            = (
-                   normalized_data_for_greater_score.pct_change(axis=1)
-                   [self.label_one] * 100
-              )
-        return normalized_data_for_greater_score
+        pct_changes = greater_score_normalized.pct_change(axis=1)
+        normalized_to_first_label = pct_changes[self.label_one] * 100
+        greater_score_normalized[self.new_label] = normalized_to_first_label
+
+        return greater_score_normalized
+
+    def _normalize_label(self, label, greater_score_normalized):
+        nonzeros_data = self.data[label] != 0.0
+        count_non_zeros = self.data[nonzeros_data][label].count()
+        non_zeros = greater_score_normalized[
+                        label] / count_non_zeros
+        greater_score_normalized[label] = non_zeros
+
